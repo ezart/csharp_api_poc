@@ -10,10 +10,11 @@ const Home = () => {
   const [result, setResult] = useState(false);
   const [num1, setNum1] = useState();
   const [num2, setNum2] = useState();
+  const [history, setHistory] = useState([]);
 
   async function getHistory() {
     const response = await fetch("http://localhost:5291");
-    const history = await response.json();
+    const h = await response.json();
   }
 
   return (
@@ -46,7 +47,6 @@ const Home = () => {
                     <Form.Label>Num 2</Form.Label>
                     <Form.Control
                       type="input"
-                      type="input"
                       onChange={(e) => {
                         setNum2(e.target.value);
                       }}
@@ -77,6 +77,11 @@ const Home = () => {
         </Col>
         <Col sm="6" className="mt-5">
           <h2>history</h2>
+          <ul>
+            {history.map((h) => (
+              <li>h</li>
+            ))}
+          </ul>
         </Col>
       </Row>
     </Container>
