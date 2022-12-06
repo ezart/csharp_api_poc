@@ -13,8 +13,9 @@ const Home = () => {
   const [history, setHistory] = useState([]);
 
   async function getHistory() {
-    const response = await fetch("http://localhost:5291");
+    const response = await fetch("http://localhost:5075");
     const h = await response.json();
+    setHistory(h);
   }
 
   return (
@@ -77,6 +78,7 @@ const Home = () => {
         </Col>
         <Col sm="6" className="mt-5">
           <h2>history</h2>
+          <button onClick={getHistory}>Get hisory</button>
           <ul>
             {history.map((h) => (
               <li>h</li>
