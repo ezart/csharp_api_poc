@@ -11,29 +11,38 @@ const Home = () => {
   const [num1, setNum1] = useState();
   const [num2, setNum2] = useState();
   const [history, setHistory] = useState([]);
+  const [isLoading, setLoading] = useState(false)
 
   async function getHistory() {
     console.log("hi");
-    const response = await fetch("http://localhost:5145/Calculator");
+    const response = await fetch("http://localhost:5000/Calculator");
     const h = await response.json();
     setHistory(h);
     console.log(history)
   }
 
   async function calculate(){
-    const data = {"num1":num1, "num2":num2}
-    const response = await fetch("http://localhost:5145/Calculator",{
-      method:'POST',
-      mode:'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body:JSON.stringify(data)
-    })
+    try {
+      setLoading(true)
+      const data = {"num1":num1, "num2":num2}
+      const response = await fetch("http://localhost:5000/Calculator",{
+        method:'POST',
+        mode:'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body:JSON.stringify(data)
+      })
 
-    const res = await response.json();
-    console.log(res);
+      const res = await response.json();
+      setResult(res.result)
+      console.log(res);
+      setLoading(false)
+        
+    } catch (error) {
+      
+    }
   }
 
   return (
@@ -82,11 +91,8 @@ const Home = () => {
                 <Col sm={2}>{num2}</Col>
                 <Col sm={2}>=</Col>
                 <Col sm={2}>
-                  {result ? (
-                    result
-                  ) : (
-                    <Spinner animation="border" variant="primary" />
-                  )}
+                  {isLoading ? <Spinner animation="border" variant="primary" /> : result }
+                
                 </Col>
               </Row>
 
@@ -97,11 +103,20 @@ const Home = () => {
         <Col sm="6" className="mt-5">
           <h2>history</h2>
           <button onClick={getHistory}>Get hisory</button>
-          <ul>
+          <table className="table table-dark">
+            <thead className="thead-dark"><tr>
+              <th scope="col">Number 1</th>
+              <th scope="col">Number 2</th>
+              <th scope="col">Result</th>
+              <th scope="col">TIme</th>
+            </tr></thead>
+            
             {history.map((h) => (
-              <li>{h.num1} {h.num2} {h.result} {h.time}</li>
+              <tr> <td>{h.num1}</td>  <td> {h.num2}</td>  <td>{h.result}</td> <td>{h.time}</td>}</tr>
             ))}
-          </ul>
+
+          </table>
+          
         </Col>
       </Row>
     </Container>
