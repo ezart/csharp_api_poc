@@ -14,10 +14,10 @@ public class CalculatorController : ControllerBase{
     [HttpGet]
     public ActionResult<List<Calculation>> GetAll() => CalculatorService.GetAll();
 
-    [HttpGet]
+    [HttpPost]
     public IActionResult Create(int num1, int num2){
         Calculation c = new Calculation(num1, num2, num1 + num1, DateTime.Now);
         CalculatorService.Add(c);
-        return CreateAtAction(nameof(Create), new {id= 1}, c);
+        return CreatedAtAction(nameof(Create), new {id= 1}, c);
     }
 }

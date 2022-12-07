@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/ezart/code/memory/csharp_api_poc/backend/backend.csproj": {}
+    "/home/manu/code/memory/csharp_api_poc/backend/backend.csproj": {}
   },
   "projects": {
-    "/home/ezart/code/memory/csharp_api_poc/backend/backend.csproj": {
+    "/home/manu/code/memory/csharp_api_poc/backend/backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ezart/code/memory/csharp_api_poc/backend/backend.csproj",
+        "projectUniqueName": "/home/manu/code/memory/csharp_api_poc/backend/backend.csproj",
         "projectName": "backend",
-        "projectPath": "/home/ezart/code/memory/csharp_api_poc/backend/backend.csproj",
-        "packagesPath": "/home/ezart/.nuget/packages/",
-        "outputPath": "/home/ezart/code/memory/csharp_api_poc/backend/obj/",
+        "projectPath": "/home/manu/code/memory/csharp_api_poc/backend/backend.csproj",
+        "packagesPath": "/home/manu/.nuget/packages/",
+        "outputPath": "/home/manu/code/memory/csharp_api_poc/backend/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/ezart/.nuget/NuGet/NuGet.Config"
+          "/home/manu/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"

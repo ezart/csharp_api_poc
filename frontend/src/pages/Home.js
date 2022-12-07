@@ -13,9 +13,27 @@ const Home = () => {
   const [history, setHistory] = useState([]);
 
   async function getHistory() {
-    const response = await fetch("http://localhost:5075");
+    console.log("hi");
+    const response = await fetch("http://localhost:5145/Calculator");
     const h = await response.json();
     setHistory(h);
+    console.log(history)
+  }
+
+  async function calculate(){
+    const data = {"num1":num1, "num2":num2}
+    const response = await fetch("http://localhost:5145/Calculator",{
+      method:'POST',
+      mode:'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body:JSON.stringify(data)
+    })
+
+    const res = await response.json();
+    console.log(res);
   }
 
   return (
@@ -54,7 +72,7 @@ const Home = () => {
                     />
                   </Form.Label>
                 </Form.Group>
-                <Button className="btn btn-success">Submit</Button>
+                <Button className="btn btn-success" onClick={calculate}>Submit</Button>
               </Form>
             </Col>
             <Col sm={6} id="result">
@@ -81,7 +99,7 @@ const Home = () => {
           <button onClick={getHistory}>Get hisory</button>
           <ul>
             {history.map((h) => (
-              <li>h</li>
+              <li>{h.num1} {h.num2} {h.result} {h.time}</li>
             ))}
           </ul>
         </Col>
