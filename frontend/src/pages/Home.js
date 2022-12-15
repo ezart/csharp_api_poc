@@ -24,8 +24,11 @@ const Home = () => {
   async function calculate(){
     try {
       setLoading(true)
-      const data = {"num1":num1, "num2":num2}
-      const response = await fetch("http://localhost:5000/Calculator",{
+      const data = {
+        "num1":2, 
+        "num2":2
+      }
+      const response = await fetch("http://localhost:5000/Calculator/",{
         method:'POST',
         mode:'no-cors',
         headers: {
@@ -36,12 +39,13 @@ const Home = () => {
       })
 
       const res = await response.json();
-      setResult(res.result)
-      console.log(res);
-      setLoading(false)
+      console.log(res)
+      // setResult(res.result)
+      // console.log(res);
+      // setLoading(false)
         
     } catch (error) {
-      
+      console.log(error)
     }
   }
 
@@ -111,8 +115,8 @@ const Home = () => {
               <th scope="col">TIme</th>
             </tr></thead>
             
-            {history.map((h) => (
-              <tr> <td>{h.num1}</td>  <td> {h.num2}</td>  <td>{h.result}</td> <td>{h.time}</td>}</tr>
+            {history.map((h, index) => (
+              <tr key={index}> <td>{h.num1}</td>  <td> {h.num2}</td>  <td>{h.result}</td> <td>{h.time}</td>}</tr>
             ))}
 
           </table>
